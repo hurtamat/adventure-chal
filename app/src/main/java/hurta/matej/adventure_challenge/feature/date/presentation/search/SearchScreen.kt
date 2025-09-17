@@ -1,4 +1,4 @@
-package hurta.matej.adventure_challenge.feature.character.presentation.search
+package hurta.matej.adventure_challenge.feature.date.presentation.search
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,8 +37,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import hurta.matej.adventure_challenge.R
 import hurta.matej.adventure_challenge.core.presentation.ui.Screen
-import hurta.matej.adventure_challenge.feature.character.domain.Character
-import hurta.matej.adventure_challenge.feature.character.presentation.mapText
+import hurta.matej.adventure_challenge.feature.date.presentation.mapText
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

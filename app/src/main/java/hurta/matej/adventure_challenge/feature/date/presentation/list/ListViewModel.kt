@@ -1,24 +1,21 @@
-package hurta.matej.adventure_challenge.feature.character.presentation.list
+package hurta.matej.adventure_challenge.feature.date.presentation.list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import hurta.matej.adventure_challenge.feature.character.data.CharacterRepository
-import hurta.matej.adventure_challenge.feature.character.domain.Character
+import hurta.matej.adventure_challenge.feature.date.data.DateRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
-class ListViewModel(private val characterRepository: CharacterRepository) : ViewModel() {
+class ListViewModel(private val dateRepository: DateRepository) : ViewModel() {
 
     private val _screenStateStream = MutableStateFlow(ListScreenState())
     val screenStateStream = _screenStateStream.asStateFlow()
 
     init {
-        characterRepository.getAllStream()
+        dateRepository.getAllStream()
             .onEach { characters ->
                 _screenStateStream.update {
                     it.copy(characters = characters)

@@ -1,9 +1,8 @@
-package hurta.matej.adventure_challenge.feature.character.presentation
+package hurta.matej.adventure_challenge.feature.date.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import hurta.matej.adventure_challenge.R
-import hurta.matej.adventure_challenge.feature.character.domain.Character
 
 @Composable
 fun mapText(status: Character.Status): String {

@@ -1,4 +1,4 @@
-package hurta.matej.adventure_challenge.feature.character.presentation
+package hurta.matej.adventure_challenge.feature.date.presentation
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,7 +27,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import hurta.matej.adventure_challenge.R
-import hurta.matej.adventure_challenge.feature.character.domain.Character
 
 @Composable
 fun CharactersList(

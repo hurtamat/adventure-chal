@@ -1,4 +1,4 @@
-package hurta.matej.adventure_challenge.feature.character.presentation.list
+package hurta.matej.adventure_challenge.feature.date.presentation.list
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,8 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import hurta.matej.adventure_challenge.R
 import hurta.matej.adventure_challenge.core.presentation.ui.Screen
-import hurta.matej.adventure_challenge.feature.character.domain.Character
-import hurta.matej.adventure_challenge.feature.character.presentation.CharactersList
+import hurta.matej.adventure_challenge.feature.date.presentation.CharactersList
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

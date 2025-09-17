@@ -1,10 +1,9 @@
-package hurta.matej.adventure_challenge.feature.character.presentation.search
+package hurta.matej.adventure_challenge.feature.date.presentation.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import hurta.matej.adventure_challenge.feature.character.data.CharacterRepository
-import hurta.matej.adventure_challenge.feature.character.domain.Character
+import hurta.matej.adventure_challenge.feature.date.data.DateRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
-class SearchViewModel(private val characterRepository: CharacterRepository) : ViewModel() {
+class SearchViewModel(private val dateRepository: DateRepository) : ViewModel() {
 
     private val _screenStateStream = MutableStateFlow(SearchScreenState())
     val screenStateStream = _screenStateStream.asStateFlow()
@@ -43,7 +42,7 @@ class SearchViewModel(private val characterRepository: CharacterRepository) : Vi
         searchJob = viewModelScope.launch {
             try {
                 delay(200.milliseconds)
-                val characters = characterRepository.search(nameFilter = nameFilter)
+                val characters = dateRepository.search(nameFilter = nameFilter)
                 _screenStateStream.update { it.copy(characters = characters) }
             } catch (t: Throwable) {
                 // Ideally normally handle error in UI
