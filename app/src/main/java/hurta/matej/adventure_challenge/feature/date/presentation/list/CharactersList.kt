@@ -1,4 +1,4 @@
-package hurta.matej.adventure_challenge.feature.date.presentation
+package hurta.matej.adventure_challenge.feature.date.presentation.list
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

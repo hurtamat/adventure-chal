@@ -14,6 +14,10 @@ data class Date(
     val Stage: Int,
 ) {
 
+    enum class State{
+        Locked, Unopened, Opened, Completed
+    }
+
 
     enum class DateFlag {
         Meal, Snacks, Mess, GetWet, Supplies, Active,
