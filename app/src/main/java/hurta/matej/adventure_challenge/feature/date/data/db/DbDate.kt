@@ -6,12 +6,13 @@ import hurta.matej.adventure_challenge.feature.date.domain.Date
 
 @Entity(tableName = "date")
 data class DbDate(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val title: String,
     val description: String,
-    val durationMin: Int,
-    val durationMax: Int,
-    val cost: Int,
+    val durationMinHours: Int,
+    val durationMaxHours: Int,
+    val costMin: Int,
+    val costMax: Int,
     val startTime: String,
     val flags: Set<Date.DateFlag> = emptySet(),
     val userRemark: String,

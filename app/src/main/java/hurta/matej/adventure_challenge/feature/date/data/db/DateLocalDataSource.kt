@@ -14,18 +14,20 @@ class DateLocalDataSource(private val dateDao: DateDao) {
 
     private fun DbDate.toDomain(): Date {
         return Date(
+            id = id,
             title = title,
             description = description,
-            durationMin = durationMin,
-            durationMax = durationMax,
-            cost = cost,
+            durationMinHours = durationMinHours,
+            durationMaxHours = durationMaxHours,
+            costMin = costMin,
+            costMax = costMax,
             startTime = startTime,
             flags = flags,
             userRemark = userRemark,
             photoPresent = photoPresent,
             category = category,
             state = State,
-            Stage = Stage,
+            stage = Stage,
         )
     }
 
@@ -38,24 +40,25 @@ class DateLocalDataSource(private val dateDao: DateDao) {
     }
 
     private fun List<Date>.toDb(): List<DbDate> {
-        return map { it.toDb() }
+        return map { date -> date.toDb() }
     }
 
     private fun Date.toDb(): DbDate {
         return DbDate(
-            id = 0, // You'll need to handle ID assignment
+            id = if (id == 0) 0 else id, // Let Room auto-generate if id is 0
             title = title,
             description = description,
-            durationMin = durationMin,
-            durationMax = durationMax,
-            cost = cost,
+            durationMinHours = durationMinHours,
+            durationMaxHours = durationMaxHours,
+            costMin = costMin,
+            costMax = costMax,
             startTime = startTime,
             flags = flags,
             userRemark = userRemark,
             photoPresent = photoPresent,
             category = category,
             State = state,
-            Stage = Stage,
+            Stage = stage,
         )
     }
 

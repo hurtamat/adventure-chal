@@ -30,9 +30,6 @@ fun ListScreen(
 
     ListScreen(
         screenState = screenState,
-        onSearchClick = {
-            // navController.navigate(Screen.Search) // TODO: Add Search screen back
-        },
         onDateClick = { date ->
             navController.navigate(Screen.DatesDetail(id = 1)) // TODO: Use actual date ID
         },
@@ -43,37 +40,13 @@ fun ListScreen(
 @Composable
 private fun ListScreen(
     screenState: ListScreenState,
-    onSearchClick: () -> Unit,
     onDateClick: (hurta.matej.adventure_challenge.feature.date.domain.Date) -> Unit,
 ) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(id = R.string.characters),
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                },
-                actions = {
-                    IconButton(onClick = onSearchClick) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_search),
-                            contentDescription = stringResource(id = R.string.search),
-                            tint = MaterialTheme.colorScheme.onPrimary,
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                )
-            )
-        },
         containerColor = MaterialTheme.colorScheme.primaryContainer,
     ) { paddingValues ->
         DatesList(
-            dates = screenState.dates,
+            datesByStage = screenState.datesByStage,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),

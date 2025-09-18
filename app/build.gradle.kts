@@ -50,10 +50,10 @@ dependencies {
     ksp(libs.android.room.compiler)
 
     implementation(libs.coil.compose)
-
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.activity)
     implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.extended)
     implementation(libs.compose.ui)
     debugImplementation(libs.compose.uiTooling)
     implementation(libs.compose.uiToolingPreview)

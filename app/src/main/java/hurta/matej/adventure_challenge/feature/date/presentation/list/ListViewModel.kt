@@ -17,8 +17,9 @@ class ListViewModel(private val dateRepository: DateRepository) : ViewModel() {
     init {
         dateRepository.getAllDatesStream()
             .onEach { dates ->
+                val datesByStage = dates.groupBy { it.stage }
                 _screenStateStream.update {
-                    it.copy(dates = dates)
+                    it.copy(datesByStage = datesByStage)
                 }
             }
             .launchIn(viewModelScope)
@@ -27,5 +28,5 @@ class ListViewModel(private val dateRepository: DateRepository) : ViewModel() {
 }
 
 data class ListScreenState(
-    val dates: List<hurta.matej.adventure_challenge.feature.date.domain.Date> = emptyList(),
+    val datesByStage: Map<Int, List<hurta.matej.adventure_challenge.feature.date.domain.Date>> = emptyMap(),
 )

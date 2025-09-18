@@ -1,18 +1,20 @@
 package hurta.matej.adventure_challenge.feature.date.domain
 
 data class Date(
+    val id: Int = 0,
     val title: String,
     val description: String,
-    val durationMin: Int,
-    val durationMax: Int,
-    val cost: Int,
+    val durationMinHours: Int,
+    val durationMaxHours: Int,
+    val costMin: Int,
+    val costMax: Int,
     val startTime: String,
     val flags: Set<Date.DateFlag> = emptySet(),
     val userRemark: String,
     val photoPresent: Boolean,
     val category: Date.Category,
     val state: Date.State,
-    val Stage: Int,
+    val stage: Int,
 ) {
 
     enum class State{
