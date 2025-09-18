@@ -24,6 +24,7 @@ class DateLocalDataSource(private val dateDao: DateDao) {
             userRemark = userRemark,
             photoPresent = photoPresent,
             category = category,
+            state = State,
             Stage = Stage,
         )
     }
@@ -53,6 +54,7 @@ class DateLocalDataSource(private val dateDao: DateDao) {
             userRemark = userRemark,
             photoPresent = photoPresent,
             category = category,
+            State = state,
             Stage = Stage,
         )
     }

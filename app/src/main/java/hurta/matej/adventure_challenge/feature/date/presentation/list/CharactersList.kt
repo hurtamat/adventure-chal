@@ -25,32 +25,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import hurta.matej.adventure_challenge.R
+import hurta.matej.adventure_challenge.feature.date.domain.Date
 
 @Composable
-fun CharactersList(
-    characters: List<Character>,
+fun DatesList(
+    dates: List<Date>,
     modifier: Modifier = Modifier,
-    onCharacterClick: (Character) -> Unit,
+    onDateClick: (Date) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(characters, key = { it.id }) { character ->
-            CharacterCard(
-                character = character,
-                onClick = { onCharacterClick(character) },
+        items(dates, key = { it.title }) { date ->
+            DateCard(
+                date = date,
+                onClick = { onDateClick(date) },
             )
         }
     }
 }
 
 @Composable
-private fun CharacterCard(
-    character: Character,
+private fun DateCard(
+    date: Date,
     onClick: () -> Unit,
 ) {
     Card(
@@ -63,22 +63,24 @@ private fun CharacterCard(
             ),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
     ) {
-        CharacterListItem(character = character)
+        DateListItem(date = date)
     }
 }
 
 @Composable
-private fun CharacterListItem(character: Character) {
+private fun DateListItem(date: Date) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
     ) {
-        AsyncImage(
-            model = character.imageUrl,
-            contentDescription = stringResource(id = R.string.avatar),
+        Icon(
+            painter = painterResource(id = R.drawable.ic_characters), // Placeholder icon
+            contentDescription = "Date icon",
             modifier = Modifier
-                .size(80.dp),
+                .size(80.dp)
+                .padding(16.dp),
+            tint = MaterialTheme.colorScheme.primary
         )
         Column(
             modifier = Modifier
@@ -88,16 +90,16 @@ private fun CharacterListItem(character: Character) {
         ) {
             Row(Modifier.fillMaxWidth()) {
                 Text(
-                    text = character.name,
+                    text = date.title,
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.weight(1f),
                 )
-                if (character.favorite) {
+                if (date.photoPresent) {
                     Spacer(Modifier.width(16.dp))
                     Icon(
                         painter = painterResource(id = R.drawable.ic_favorites_filled),
-                        contentDescription = stringResource(id = R.string.favorite),
+                        contentDescription = "Photo available",
                         modifier = Modifier.size(16.dp),
                         tint = MaterialTheme.colorScheme.primary,
                     )
@@ -105,8 +107,14 @@ private fun CharacterListItem(character: Character) {
             }
 
             Text(
-                text = mapText(character.status),
+                text = date.category.getTitle(),
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondary
+            )
+
+            Text(
+                text = "${date.durationMin}-${date.durationMax} min • $${date.cost}",
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSecondary
             )
         }

@@ -15,10 +15,10 @@ class ListViewModel(private val dateRepository: DateRepository) : ViewModel() {
     val screenStateStream = _screenStateStream.asStateFlow()
 
     init {
-        dateRepository.getAllStream()
-            .onEach { characters ->
+        dateRepository.getAllDatesStream()
+            .onEach { dates ->
                 _screenStateStream.update {
-                    it.copy(characters = characters)
+                    it.copy(dates = dates)
                 }
             }
             .launchIn(viewModelScope)
@@ -27,5 +27,5 @@ class ListViewModel(private val dateRepository: DateRepository) : ViewModel() {
 }
 
 data class ListScreenState(
-    val characters: List<Character> = emptyList(),
+    val dates: List<hurta.matej.adventure_challenge.feature.date.domain.Date> = emptyList(),
 )

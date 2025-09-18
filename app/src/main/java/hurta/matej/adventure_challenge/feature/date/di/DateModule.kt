@@ -1,6 +1,5 @@
 package hurta.matej.adventure_challenge.feature.date.di
 
-import hurta.matej.adventure_challenge.feature.date.presentation.search.SearchViewModel
 import hurta.matej.adventure_challenge.core.data.db.DateDatabase
 import hurta.matej.adventure_challenge.feature.date.data.DateRepository
 import hurta.matej.adventure_challenge.feature.date.data.db.DateLocalDataSource
@@ -18,5 +17,4 @@ val dateModule = module {
     singleOf(::DateRepository)
 
     viewModelOf(::ListViewModel)
-    viewModelOf(::SearchViewModel)
 }

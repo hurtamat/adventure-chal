@@ -11,6 +11,7 @@ data class Date(
     val userRemark: String,
     val photoPresent: Boolean,
     val category: Date.Category,
+    val state: Date.State,
     val Stage: Int,
 ) {
 

@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import hurta.matej.adventure_challenge.feature.date.presentation.detail.DetailScreen
 import hurta.matej.adventure_challenge.feature.date.presentation.list.ListScreen
-import hurta.matej.adventure_challenge.feature.date.presentation.search.SearchScreen
 
 @Composable
 fun Navigation(
@@ -16,14 +16,28 @@ fun Navigation(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Screen.TopLevel.Characters,
+        startDestination = Screen.Start,
     ) {
-        composable<Screen.TopLevel.Characters> {
+        composable<Screen.Start> {
+            StartScreen(navController)
+        }
+
+        composable<Screen.List> {
             ListScreen(navController)
         }
 
-        composable<Screen.Search> {
-            SearchScreen(navController)
+        composable<Screen.DatesDetail> {
+            DetailScreen(navController)
         }
+    }
+}
+
+@Composable
+private fun StartScreen(navController: NavHostController) {
+    // Placeholder start screen - you can implement this later
+    androidx.compose.material3.Button(
+        onClick = { navController.navigate(Screen.List) }
+    ) {
+        androidx.compose.material3.Text("Start Adventure!")
     }
 }
