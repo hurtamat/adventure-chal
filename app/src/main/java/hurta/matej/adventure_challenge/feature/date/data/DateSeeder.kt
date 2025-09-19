@@ -26,10 +26,10 @@ class DateSeeder(private val dateRepository: DateRepository) {
                 costMax = 30,
                 startTime = "Before 7:00 PM",
                 flags = emptySet(),
-                userRemark = "",
+                userRemark = "Beachboy a Beethoven <3",
                 photoPresent = false,
                 category = Date.Category.TheBeginning,
-                state = Date.State.Unopened,
+                state = Date.State.Opened,
                 stage = 1
             ),
             Date(
@@ -40,7 +40,7 @@ class DateSeeder(private val dateRepository: DateRepository) {
                 costMin = 10,
                 costMax = 10,
                 startTime = "Before 9:00 PM",
-                flags = emptySet(),
+                flags = setOf(Date.DateFlag.Supplies, Date.DateFlag.Away, Date.DateFlag.Filming),
                 userRemark = "",
                 photoPresent = false,
                 category = Date.Category.TheBeginning,

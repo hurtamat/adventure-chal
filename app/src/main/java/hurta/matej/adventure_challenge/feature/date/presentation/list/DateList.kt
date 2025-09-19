@@ -19,10 +19,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.LockOpen
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.HourglassEmpty
 import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.QuestionMark
@@ -353,6 +355,45 @@ private fun EmptyLinesForFutureRemark(){
             color = Color.Gray)
     }
 
+}
+
+@Composable
+private fun DateListTopInfo(date: Date){
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ){
+        Text(
+            text = "$: ${date.costMin}-${date.costMax}",
+            style = MaterialTheme.typography.labelSmall
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.AccessTime,
+                contentDescription = "Start time",
+                modifier = Modifier.size(12.dp),
+            )
+            Text(
+                text = ": ${date.startTime}",
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.HourglassEmpty,
+                contentDescription = "Duration",
+                modifier = Modifier.size(12.dp),
+            )
+            Text(
+                text = ": ${date.durationMinHours}-${date.durationMaxHours}h",
+                style = MaterialTheme.typography.labelSmall
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
