@@ -8,13 +8,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import hurta.matej.adventure_challenge.R
 
-
 private val fontFamily = FontFamily(
     Font(R.font.inter_regular, weight = FontWeight.Normal),
     Font(R.font.inter_bold, weight = FontWeight.Bold),
-)
+    )
 
-val HomeworkTypography = Typography(
+val MainTypography = Typography(
     headlineLarge = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp,

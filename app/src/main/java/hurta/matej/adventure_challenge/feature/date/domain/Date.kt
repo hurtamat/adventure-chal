@@ -1,5 +1,26 @@
 package hurta.matej.adventure_challenge.feature.date.domain
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.DirectionsRun
+import androidx.compose.material.icons.filled.ChildCare
+import androidx.compose.material.icons.filled.Cookie
+import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.DirectionsRun
+import androidx.compose.material.icons.filled.DryCleaning
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Living
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.MoreTime
+import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.filled.NightlightRound
+import androidx.compose.material.icons.filled.Park
+import androidx.compose.material.icons.filled.PhotoCamera
+import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Water
+import androidx.compose.material.icons.filled.WbSunny
+import androidx.compose.ui.graphics.vector.ImageVector
+
 data class Date(
     val id: Int = 0,
     val title: String,
@@ -18,7 +39,7 @@ data class Date(
 ) {
 
     enum class State{
-        Locked, Unopened, Opened, Completed
+        Locked, Unopened, Opened
     }
 
 
@@ -63,6 +84,26 @@ data class Date(
                 Filming -> "These adventures need either a photo or video camera to complete. Of course your smartphone will work!"
                 Babysitter -> "Many of the adventures can be done with kids around, but these will be quite difficult to accomplish without a babysitter. Check for this indicator if you have a sitter lined up for the night."
                 PlanAhead -> "This adventure will require a little planning, scratch off at least 48hrs ahead of time."
+            }
+        }
+
+        fun getIcon(): ImageVector {
+            return when (this) {
+                Meal -> Icons.Filled.Restaurant
+                Snacks -> Icons.Filled.Cookie
+                Mess -> Icons.Filled.DryCleaning
+                GetWet -> Icons.Filled.Water
+                Supplies -> Icons.Filled.ShoppingCart
+                Active -> Icons.AutoMirrored.Filled.DirectionsRun
+                Indoors -> Icons.Filled.Living
+                Outdoors -> Icons.Filled.Park
+                Home -> Icons.Filled.Home
+                Away -> Icons.Filled.DirectionsCar
+                Daylight -> Icons.Filled.WbSunny
+                Nighttime -> Icons.Filled.NightlightRound
+                Filming -> Icons.Filled.PhotoCamera
+                Babysitter -> Icons.Filled.ChildCare
+                PlanAhead -> Icons.Filled.MoreTime
             }
         }
     }

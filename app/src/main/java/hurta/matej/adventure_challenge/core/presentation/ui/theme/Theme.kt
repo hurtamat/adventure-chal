@@ -17,7 +17,7 @@ fun Homework2Theme(
 
     MaterialTheme(
         colorScheme = colorSchema,
-        typography = HomeworkTypography,
+        typography = MainTypography,
         content = content,
     )
 }
