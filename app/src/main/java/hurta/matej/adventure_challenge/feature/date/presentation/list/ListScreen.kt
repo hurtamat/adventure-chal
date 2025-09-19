@@ -31,7 +31,7 @@ fun ListScreen(
     ListScreen(
         screenState = screenState,
         onDateClick = { date ->
-            navController.navigate(Screen.DatesDetail(id = 1)) // TODO: Use actual date ID
+            navController.navigate(Screen.DatesDetail(date.id))
         },
     )
 }

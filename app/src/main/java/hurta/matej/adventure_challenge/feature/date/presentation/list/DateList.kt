@@ -1,5 +1,6 @@
 package hurta.matej.adventure_challenge.feature.date.presentation.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -68,6 +69,7 @@ fun DatesList(
                     date = date,
                     onClick = { onDateClick(date) },
                 )
+                Spacer(modifier = Modifier.height(32.dp))
             }
         }
     }
@@ -97,16 +99,31 @@ private fun DateCard(
     date: Date,
     onClick: () -> Unit,
 ) {
-    Card(
-        modifier = Modifier.clickable(onClick = onClick)
-            .aspectRatio(3f / 4f),
-        shape = RoundedCornerShape(2.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = if (date.state == Date.State.Locked) Color.Black else MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
+    Column(
+        modifier = Modifier.padding(16.dp)
     ) {
-        DateListItem(date = date)
+        if(date.state == Date.State.Unopened) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Transparent),
+                contentAlignment = Alignment.Center
+            ) {
+                DateListTopInfo(date)
+            }
+            Spacer(modifier = Modifier.height(4.dp))
+        }
+        Card(
+            modifier = Modifier.clickable(onClick = onClick)
+                .aspectRatio(3f / 4f),
+            shape = RoundedCornerShape(2.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = if (date.state == Date.State.Locked) Color.Black else MaterialTheme.colorScheme.surface
+            ),
+            elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
+        ) {
+            DateListItem(date = date)
+        }
     }
 }
 
@@ -123,7 +140,7 @@ private fun DateListItem(date: Date){
 private fun DateListItemLocked(date: Date) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(18.dp)
+        modifier = Modifier.padding(18.dp, 18.dp, 18.dp, 0.dp)
     ) {
         Card(
             modifier = Modifier
@@ -162,7 +179,7 @@ private fun DateListItemLocked(date: Date) {
 private fun DateListItemUnopened(date: Date) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(18.dp)
+        modifier = Modifier.padding(18.dp, 18.dp, 18.dp, 0.dp)
     ) {
         Card(
             modifier = Modifier
@@ -222,7 +239,7 @@ private fun DateListItemUnopened(date: Date) {
 private fun DateListItemOpened(date: Date) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(18.dp)
+        modifier = Modifier.padding(18.dp, 18.dp, 18.dp, 0.dp)
     ) {
         Card(
             modifier = Modifier
@@ -267,7 +284,7 @@ private fun DateListItemOpened(date: Date) {
             Spacer(modifier = Modifier.height(12.dp))
             Column {
                 val lines = wrapTextToLines(date.userRemark)
-                val maxLines = 3 // 3 dividers = 4 text areas
+                val maxLines = 3
 
                 for (i in 0 until maxLines) {
                     Box(
@@ -291,7 +308,7 @@ private fun DateListItemOpened(date: Date) {
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(24.dp)
+                                    .height(26.dp)
                                     .zIndex(1f)
                             )
                         }
@@ -300,7 +317,7 @@ private fun DateListItemOpened(date: Date) {
                             HorizontalDivider(
                                 modifier = Modifier
                                     .align(Alignment.BottomCenter)
-                                    .padding(0.dp, 1.dp, 0.dp, 3.dp,)
+                                    .padding(0.dp, 0.dp, 0.dp, 3.dp,)
                                     .zIndex(0f),
                                 thickness = 2.dp,
                                 color = Color.Gray
@@ -365,7 +382,8 @@ private fun DateListTopInfo(date: Date){
     ){
         Text(
             text = "$: ${date.costMin}-${date.costMax}",
-            style = MaterialTheme.typography.labelSmall
+            style = MaterialTheme.typography.labelMedium,
+            color = Color.Gray
         )
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -373,11 +391,13 @@ private fun DateListTopInfo(date: Date){
             Icon(
                 imageVector = Icons.Filled.AccessTime,
                 contentDescription = "Start time",
-                modifier = Modifier.size(12.dp),
+                modifier = Modifier.size(16.dp),
+                tint = Color.Gray
             )
             Text(
                 text = ": ${date.startTime}",
-                style = MaterialTheme.typography.labelSmall
+                style = MaterialTheme.typography.labelMedium,
+                color = Color.Gray
             )
         }
         Row(
@@ -386,11 +406,13 @@ private fun DateListTopInfo(date: Date){
             Icon(
                 imageVector = Icons.Filled.HourglassEmpty,
                 contentDescription = "Duration",
-                modifier = Modifier.size(12.dp),
+                modifier = Modifier.size(16.dp),
+                tint = Color.Gray
             )
             Text(
                 text = ": ${date.durationMinHours}-${date.durationMaxHours}h",
-                style = MaterialTheme.typography.labelSmall
+                style = MaterialTheme.typography.labelMedium,
+                color = Color.Gray
             )
         }
     }
