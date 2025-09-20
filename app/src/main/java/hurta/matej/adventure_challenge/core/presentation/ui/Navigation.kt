@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import hurta.matej.adventure_challenge.feature.date.presentation.detail.DetailScreen
 import hurta.matej.adventure_challenge.feature.date.presentation.list.ListScreen
 
 @Composable
@@ -24,10 +23,6 @@ fun Navigation(
 
         composable<Screen.List> {
             ListScreen(navController)
-        }
-
-        composable<Screen.DatesDetail> {
-            DetailScreen(navController)
         }
     }
 }

@@ -1,12 +1,10 @@
 package hurta.matej.adventure_challenge.feature.date.presentation.list
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -15,19 +13,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.AddAPhoto
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.LockOpen
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.HourglassEmpty
-import androidx.compose.material.icons.filled.Photo
-import androidx.compose.material.icons.filled.PhotoCamera
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.QuestionMark
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -46,89 +37,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import hurta.matej.adventure_challenge.feature.date.domain.Date
 import hurta.matej.adventure_challenge.ui.theme.cursiveFontFamily
-import kotlin.collections.setOf
+
 
 @Composable
-fun DatesList(
-    datesByStage: Map<Int, List<Date>>,
-    modifier: Modifier = Modifier,
-    onDateClick: (Date) -> Unit,
-) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        datesByStage.toSortedMap().forEach { (stage, dates) ->
-            item(key = "stage_$stage") {
-                StageDivider(stage = stage)
-            }
-
-            items(dates, key = { it.title }) { date ->
-                DateCard(
-                    date = date,
-                    onClick = { onDateClick(date) },
-                )
-                Spacer(modifier = Modifier.height(32.dp))
-            }
-        }
-    }
-}
-
-@Composable
-private fun StageDivider(
-    stage: Int,
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-    ) {
-        Text(
-            text = "Stage $stage",
-            style = MaterialTheme.typography.headlineMedium,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier.padding(16.dp)
-        )
-    }
-}
-
-@Composable
-private fun DateCard(
-    date: Date,
-    onClick: () -> Unit,
-) {
-    Column(
-        modifier = Modifier.padding(16.dp)
-    ) {
-        if(date.state == Date.State.Unopened) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Transparent),
-                contentAlignment = Alignment.Center
-            ) {
-                DateListTopInfo(date)
-            }
-            Spacer(modifier = Modifier.height(4.dp))
-        }
-        Card(
-            modifier = Modifier.clickable(onClick = onClick)
-                .aspectRatio(3f / 4f),
-            shape = RoundedCornerShape(2.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = if (date.state == Date.State.Locked) Color.Black else MaterialTheme.colorScheme.surface
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
-        ) {
-            DateListItem(date = date)
-        }
-    }
-}
-
-@Composable
-private fun DateListItem(date: Date){
+fun DateListItem(date: Date){
     when(date.state) {
         Date.State.Locked -> DateListItemLocked(date)
         Date.State.Unopened -> DateListItemUnopened(date)
@@ -212,8 +124,8 @@ private fun DateListItemUnopened(date: Date) {
                         for (flag in date.flags) {
                             Icon(
                                 imageVector = flag.getIcon(),
-                                contentDescription = "Date flag",
-                                modifier = Modifier.size(32.dp),
+                                contentDescription = flag.getTitle(),
+                                modifier = Modifier.size(40.dp).padding(horizontal = 2.dp),
                             )
                         }
                     }
@@ -317,7 +229,7 @@ private fun DateListItemOpened(date: Date) {
                             HorizontalDivider(
                                 modifier = Modifier
                                     .align(Alignment.BottomCenter)
-                                    .padding(0.dp, 0.dp, 0.dp, 3.dp,)
+                                    .padding(0.dp, 1.dp, 0.dp, 2.dp,)
                                     .zIndex(0f),
                                 thickness = 2.dp,
                                 color = Color.Gray
@@ -375,7 +287,7 @@ private fun EmptyLinesForFutureRemark(){
 }
 
 @Composable
-private fun DateListTopInfo(date: Date){
+fun DateListTopInfo(date: Date){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -483,7 +395,7 @@ private fun DateCardOpenedPreview() {
                 costMax = 30,
                 startTime = "Before 7:00 PM",
                 flags = setOf(Date.DateFlag.Outdoors, Date.DateFlag.Babysitter, Date.DateFlag.Active),
-                userRemark = "Twas a nice holiday we have ddidnt we. oi yes sir we did Did we alright \n fuck me for fucks sake ai man I really like your collra bone",
+                userRemark = "Twas 3 a nice holiday we have ddidnt we. oi yes sir we did Did we alright \n fuck me for fucks sake ai man I really like your collra bone",
                 photoPresent = false,
                 category = Date.Category.TheBeginning,
                 state = Date.State.Opened,
